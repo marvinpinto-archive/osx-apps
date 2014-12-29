@@ -8,6 +8,7 @@ iterm-new-window_version = 1.0
 all: $(osxapps) postclean
 
 $(osxapps): clean
+	@rm -rf $(pkgpath)/*
 	@echo Generating new $(@).app, version $($(@)_version)
 	@mkdir -p $(pkgpath)/$(@).app/Contents/MacOS
 	@mkdir -p $(pkgpath)/$(@).app/Contents/Resources
@@ -21,7 +22,7 @@ $(osxapps): clean
 	@chmod +x $(pkgpath)/$(@).app/Contents/MacOS/$(@)
 	@echo Replacing ~/Dropbox/osx-apps/$(@).app
 	@rm -rf ~/Dropbox/osx-apps/$(@).app
-	@mv $(pkgpath)/$(@).app ~/Dropbox/osx-apps/$(@).app
+	/usr/bin/hdiutil create -volname $(@) -srcfolder $(pkgpath) -ov -format UDZO ~/Dropbox/osx-apps/$(@)_$($(@)_version).dmg
 
 postclean:
 	@echo Cleaning out the $(pkgpath) directory
