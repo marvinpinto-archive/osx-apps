@@ -1,5 +1,7 @@
 pkgpath = pkgs
-osxapps =
+osxapps = chrome-new-window
+
+chrome-new-window_version = 1.0
 
 all: $(osxapps) postclean
 
