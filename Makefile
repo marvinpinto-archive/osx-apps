@@ -23,6 +23,7 @@ $(osxapps): clean
 	@echo Replacing ~/Dropbox/osx-apps/$(@).app
 	@rm -rf ~/Dropbox/osx-apps/$(@).app
 	/usr/bin/hdiutil create -volname $(@) -srcfolder $(pkgpath) -ov -format UDZO ~/Dropbox/osx-apps/$(@)_$($(@)_version).dmg
+	@echo SHASUM: `shasum -a 256 ~/Dropbox/osx-apps/$(@)_$($(@)_version).dmg`
 
 postclean:
 	@echo Cleaning out the $(pkgpath) directory
